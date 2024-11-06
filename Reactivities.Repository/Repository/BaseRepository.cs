@@ -1,16 +1,19 @@
-﻿using Domain;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Reactivities.Database;
+using Reactivities.Entity;
+using Reactivities.Entity.Dtos;
+using Reactivities.Utils;
 using System.Linq.Expressions;
-using Utils;
-using static Persistence.Repository.Interface.IBaseRepository;
+using static Reactivities.Repository.Interface.Repository.Interface.IBaseRepository;
 
-namespace Persistence.Repository;
+namespace Reactivities.Repository.Repository;
 
 public sealed class BaseRepository<TDbContext> : IBaseRepository<TDbContext> where TDbContext : DataContext
 {
     private readonly TDbContext _dbContext;
     private readonly ILogger<BaseRepository<TDbContext>> _logger;
+
     public BaseRepository(TDbContext dbcontext, ILogger<BaseRepository<TDbContext>> logger)
     {
         _logger = logger;
@@ -18,6 +21,7 @@ public sealed class BaseRepository<TDbContext> : IBaseRepository<TDbContext> whe
     }
 
     #region Create
+
     public async Task<T> AddAsync<T>(T entity, bool clearTracker = false, CancellationToken cancellationToken = default) where T : class
     {
         var entry = await _dbContext.AddAsync(entity, cancellationToken);
@@ -31,9 +35,11 @@ public sealed class BaseRepository<TDbContext> : IBaseRepository<TDbContext> whe
         var result = await SaveChangeAsync(clearTracker, cancellationToken);
         return result;
     }
-    #endregion
+
+    #endregion Create
 
     #region Update
+
     public async Task<T> UpdateAsync<T>(T entity, bool clearTracker = false, CancellationToken cancellationToken = default) where T : class
     {
         var result = _dbContext.Set<T>().Update(entity);
@@ -50,9 +56,11 @@ public sealed class BaseRepository<TDbContext> : IBaseRepository<TDbContext> whe
         var result = await SaveChangeAsync(clearTracker, cancellationToken);
         return result;
     }
+
     #endregion Update
 
     #region Delete (use)
+
     public async Task<int> DeleteAsync<T>(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default) where T : class
     {
         var entity = await _dbContext.Set<T>().AsTracking().FirstOrDefaultAsync(predicate, cancellationToken) ?? throw new Exception("can not found");
@@ -68,6 +76,7 @@ public sealed class BaseRepository<TDbContext> : IBaseRepository<TDbContext> whe
         }
         return await SaveChangeAsync();
     }
+
     public async Task<int> DeleteAsync<T>(T entity, CancellationToken cancellationToken = default) where T : class
     {
         if (entity is BaseIdEntity<Guid> deletableEntity)
@@ -83,6 +92,7 @@ public sealed class BaseRepository<TDbContext> : IBaseRepository<TDbContext> whe
         var result = await SaveChangeAsync(false, cancellationToken);
         return result;
     }
+
     #endregion Delete (use)
 
     #region Delete (admin use only)
@@ -100,9 +110,11 @@ public sealed class BaseRepository<TDbContext> : IBaseRepository<TDbContext> whe
         var result = await SaveChangeAsync(clearTracker, cancellationToken);
         return result;
     }
+
     #endregion Delete (admin use only)
 
     #region Retrive
+
     public async Task<List<T>> GetAsync<T>(Expression<Func<T, bool>> predicate = null, CancellationToken cancellationToken = default) where T : class
     {
         if (predicate == null)
@@ -125,10 +137,13 @@ public sealed class BaseRepository<TDbContext> : IBaseRepository<TDbContext> whe
     {
         return await _dbContext.Set<T>().AnyAsync(predicate, cancellationToken);
     }
+
     // get with paging
 
     #endregion Retrive
+
     #region Query
+
     public IQueryable<T> Query<T>(Expression<Func<T, bool>> predicate = null) where T : class
     {
         if (predicate == null)
@@ -146,9 +161,11 @@ public sealed class BaseRepository<TDbContext> : IBaseRepository<TDbContext> whe
         }
         return _dbContext.Set<T>().Where(predicate).AsTracking();
     }
+
     #endregion Query
 
     #region Find
+
     public async Task<T> FindFirstAsync<T>(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default) where T : class
     {
         if (predicate == null)
@@ -157,6 +174,7 @@ public sealed class BaseRepository<TDbContext> : IBaseRepository<TDbContext> whe
         }
         return await _dbContext.Set<T>().AsNoTracking().FirstOrDefaultAsync(predicate, cancellationToken);
     }
+
     public async Task<T> FindFirstForUpdateAsync<T>(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default) where T : class
     {
         if (predicate == null)
@@ -165,9 +183,11 @@ public sealed class BaseRepository<TDbContext> : IBaseRepository<TDbContext> whe
         }
         return await _dbContext.Set<T>().AsTracking().FirstOrDefaultAsync(predicate, cancellationToken);
     }
-    #endregion
+
+    #endregion Find
 
     #region Transaction
+
     public async Task ActionInTransaction(Func<Task> action)
     {
         using (var transaction = _dbContext.Database.BeginTransaction())
@@ -187,6 +207,7 @@ public sealed class BaseRepository<TDbContext> : IBaseRepository<TDbContext> whe
             }
         }
     }
+
     #endregion Transaction
 
     #region Clear tracker
@@ -201,17 +222,19 @@ public sealed class BaseRepository<TDbContext> : IBaseRepository<TDbContext> whe
         return result;
     }
 
-
     #endregion Clear tracker
 
     #region Pagination
+
     public Task<PagedResult<R>> GetPagination<T, R>(PaginationParameter pagination, Func<T, R> converter = null, CancellationToken cancellationToken = default) where T : class
     {
         return _dbContext.Set<T>().ApplyFilterAndPaginationAsync(pagination, converter);
     }
+
     public Task<PagedResult<R>> GetPagination<T, R>(PaginationParameter pagination, IQueryable<T> queryable, Func<T, R> converter = null, CancellationToken cancellationToken = default) where T : class
     {
         return queryable.ApplyFilterAndPaginationAsync(pagination, converter);
     }
-    #endregion
+
+    #endregion Pagination
 }

@@ -1,8 +1,8 @@
-﻿using Domain;
+﻿using Reactivities.Utils;
+using Reactivities.Utils.AppUser;
 using System.Security.Claims;
-using Utils;
 
-namespace API.CustomMiddleware
+namespace Reactivities.API.CustomMiddleware
 {
     public class SetInfoUserMiddleware
     {
@@ -15,7 +15,7 @@ namespace API.CustomMiddleware
 
         public async Task InvokeAsync(HttpContext context)
         {
-            // Here, we're simulating retrieving user info. 
+            // Here, we're simulating retrieving user info.
             // In real scenarios, you might extract it from a token, a claim, or a header.
             string name = context.User?.Identity?.Name ?? CConstants.SystemUser;
             string id = context.User?.FindFirstValue(ClaimTypes.NameIdentifier) ?? "";

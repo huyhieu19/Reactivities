@@ -1,10 +1,11 @@
 ﻿using System.Linq.Expressions;
 
-namespace Utils;
+namespace Reactivities.Utils;
 
 public static class ExpressionBuilder
 {
     public static Expression<Func<T, bool>> True<T>() => x => true;
+
     public static Expression<Func<T, bool>> False<T>() => x => false;
 
     // Phương thức AND

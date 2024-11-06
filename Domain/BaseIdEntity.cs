@@ -1,4 +1,4 @@
-﻿namespace Domain
+﻿namespace Reactivities.Entity
 {
     public class BaseIdEntity<T>
     {

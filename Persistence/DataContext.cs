@@ -1,8 +1,8 @@
-﻿using Domain;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Reactivities.Utils.AppUser;
 
-namespace Persistence;
+namespace Reactivities.Database;
 
 public class DataContext : IdentityDbContext<AppUser, UserRole, Guid>
 {
@@ -22,7 +22,6 @@ public class DataContext : IdentityDbContext<AppUser, UserRole, Guid>
                 entityType.SetTableName(tableName.Substring(6));
             }
         }
-
     }
 
     public override DbSet<AppUser> Users { get; set; } = default!;

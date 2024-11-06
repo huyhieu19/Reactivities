@@ -1,9 +1,9 @@
-﻿using Domain;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Utils;
+using Reactivities.Utils;
+using Reactivities.Utils.AppUser;
 
-namespace API.CustomAttribute
+namespace Reactivities.API.CustomAttribute
 {
     public class Authorize : AuthorizeAttribute, IAuthorizationFilter
     {

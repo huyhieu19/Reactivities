@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+	<ItemGroup>
+		<ProjectReference Include="..\Domain\Reactivities.Entity.csproj" />
+		<ProjectReference Include="..\Reactivities.Repository\Reactivities.Repository.csproj" />
+	</ItemGroup>
+
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\Domain\Domain.csproj" />
-	</ItemGroup>
 
 </Project>

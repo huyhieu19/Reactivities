@@ -1,4 +1,4 @@
-namespace API;
+namespace Reactivities.API;
 
 public class WeatherForecast
 {

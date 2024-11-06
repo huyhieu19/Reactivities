@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Persistence
+namespace Reactivities.Database
 {
     public static class DataContextExtensions
     {

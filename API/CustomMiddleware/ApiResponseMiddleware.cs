@@ -1,8 +1,8 @@
-﻿using Domain.BaseResponse;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Reactivities.Entity.BaseResponse;
 using System.Text;
 
-namespace API.CustomMiddleware;
+namespace Reactivities.API.CustomMiddleware;
 
 public class ApiResponseMiddleware
 {
@@ -42,7 +42,6 @@ public class ApiResponseMiddleware
         {
             using (var responseBody = new MemoryStream())
             {
-
                 // Handle exceptions here
 
                 // Create an ResponseModel with error details
@@ -90,27 +89,35 @@ public class ApiResponseMiddleware
                 case 400:
                     errorMessage = "Bad Request - The server could not understand the request due to invalid syntax.";
                     break;
+
                 case 401:
                     errorMessage = "Unauthorized - The client must authenticate itself to get the requested response.";
                     break;
+
                 case 403:
                     errorMessage = "Forbidden - The client does not have access rights to the content.";
                     break;
+
                 case 404:
                     errorMessage = "Not Found - The server can not find the requested resource.";
                     break;
+
                 case 500:
                     errorMessage = "Internal Server Error - The server has encountered a situation it doesn't know how to handle.";
                     break;
+
                 case 502:
                     errorMessage = "Bad Gateway - The server, while acting as a gateway or proxy, received an invalid response from the upstream server.";
                     break;
+
                 case 503:
                     errorMessage = "Service Unavailable - The server is not ready to handle the request.";
                     break;
+
                 case 504:
                     errorMessage = "Gateway Timeout - The server is acting as a gateway and cannot get a response in time.";
                     break;
+
                 default:
                     errorMessage = "An error occurred.";
                     break;

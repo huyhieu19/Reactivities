@@ -1,6 +1,6 @@
-﻿using Domain;
+﻿using Reactivities.Utils.AppUser;
 
-namespace Utils;
+namespace Reactivities.Utils;
 
 public class UserContext
 {
@@ -21,10 +21,12 @@ public class UserContext
             _runtimeContext.Value = value;
         }
     }
+
     public static void SetDefault()
     {
         RuntimeContext.User = new CurrentUser();
     }
+
     public static void SetUserData(CurrentUser user)
     {
         RuntimeContext.User = user;
@@ -47,10 +49,12 @@ public class CurrentUser
         PhoneNumber = phoneNumber;
         Roles = roles;
     }
+
     public CurrentUser()
     {
         //this.SetDefault();
     }
+
     public void SetDefault()
     {
         Id = Guid.Empty;
@@ -59,7 +63,6 @@ public class CurrentUser
         PhoneNumber = string.Empty;
         Roles = [RoleType.Guest];
     }
-
 }
 
 public class RuntimeContextInstance
