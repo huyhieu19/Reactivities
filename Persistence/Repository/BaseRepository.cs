@@ -204,9 +204,14 @@ public sealed class BaseRepository<TDbContext> : IBaseRepository<TDbContext> whe
 
     #endregion Clear tracker
 
+    #region Pagination
     public Task<PagedResult<R>> GetPagination<T, R>(PaginationParameter pagination, Func<T, R> converter = null, CancellationToken cancellationToken = default) where T : class
     {
         return _dbContext.Set<T>().ApplyFilterAndPaginationAsync(pagination, converter);
     }
-
+    public Task<PagedResult<R>> GetPagination<T, R>(PaginationParameter pagination, IQueryable<T> queryable, Func<T, R> converter = null, CancellationToken cancellationToken = default) where T : class
+    {
+        return queryable.ApplyFilterAndPaginationAsync(pagination, converter);
+    }
+    #endregion
 }
