@@ -23,5 +23,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.UseMiddleware<SetInfoUserMiddleware>();
-
+app.UseMiddleware<ApiResponseMiddleware>();
 app.Run();
