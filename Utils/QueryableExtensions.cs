@@ -1,10 +1,10 @@
-﻿using Domain;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Reactivities.Entity.Dtos;
 using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Utils;
+namespace Reactivities.Utils;
 
 public static class QueryableExtensions
 {
@@ -94,7 +94,7 @@ public static class QueryableExtensions
             {
                 var member = Expression.Property(parameter, column);
                 var likeExpression = BuildContainsExpression(member, searchKeyword);
-                return (Expression)likeExpression;
+                return likeExpression;
             });
             var searchExpression = searchExpressions.Aggregate((current, next) => Expression.OrElse(current, next));
             finalExpression = finalExpression == null ? searchExpression : Expression.AndAlso(finalExpression, searchExpression);
@@ -154,7 +154,6 @@ public static class QueryableExtensions
 
         return source;
     }
-
 
     // Phương thức xây dựng biểu thức Contains cho tìm kiếm chuỗi
     private static Expression BuildContainsExpression(MemberExpression member, string searchKeyword)

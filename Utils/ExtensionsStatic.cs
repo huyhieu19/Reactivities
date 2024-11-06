@@ -1,13 +1,14 @@
-﻿using Domain;
+﻿using Reactivities.Utils.AppUser;
 using System.ComponentModel;
 using System.Reflection;
 
-namespace Utils;
+namespace Reactivities.Utils;
 
 public static class ExtensionsStatic
 {
     private static readonly Random _random = new Random();
     private const string _characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
     public static string GenerateResetCode(int length = 6)
     {
         return new string(Enumerable.Range(0, length)
@@ -67,7 +68,6 @@ public static class ExtensionsStatic
         }
         return roles;
     }
-
 
     public static string DescriptionAttribute<T>(this T source)
     {

@@ -1,12 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<ItemGroup>
-		<ProjectReference Include="..\Domain\Domain.csproj" />
-		<ProjectReference Include="..\Utils\Utils.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Configurations\" />
+		<ProjectReference Include="..\Domain\Reactivities.Entity.csproj" />
+		<ProjectReference Include="..\Utils\Reactivities.Utils.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

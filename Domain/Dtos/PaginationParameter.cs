@@ -1,4 +1,4 @@
-﻿namespace Domain;
+﻿namespace Reactivities.Entity.Dtos;
 
 public class PaginationParameter
 {

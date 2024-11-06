@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel;
 
-namespace Domain;
+namespace Reactivities.Entity.Dtos;
+
 public enum SortType
 {
     [Description("Ascending")]
     Ascending = 0,
+
     [Description("Descending")]
     Descending = 1
 }

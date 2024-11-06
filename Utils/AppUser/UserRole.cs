@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Domain;
+namespace Reactivities.Utils.AppUser;
 
 public sealed class UserRole : IdentityRole<Guid>
 {
