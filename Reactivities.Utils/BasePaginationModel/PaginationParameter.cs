@@ -1,5 +1,14 @@
 ﻿namespace Reactivities.Entity.Dtos;
 
+public class PaginationBaseQuery
+{
+    public string SearchKeyword { get; set; } = null;
+    public Dictionary<string, List<string>> Filters { get; set; }
+    public int PageNumber { get; set; } = 1;
+    public int PageSize { get; set; } = 10;
+    public Dictionary<string, SortType> Sorter { get; set; }
+}
+
 public class PaginationParameter
 {
     public string SearchKeyword { get; set; } = null;
