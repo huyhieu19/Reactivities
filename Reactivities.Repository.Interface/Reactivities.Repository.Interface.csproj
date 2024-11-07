@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Reactivities.Database\Reactivities.Database.csproj" />
-    <ProjectReference Include="..\Reactivities.Dtos\Reactivities.Dtos.csproj" />
-    <ProjectReference Include="..\Reactivities.Entity\Reactivities.Entity.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Reactivities.Database\Reactivities.Database.csproj" />
+		<ProjectReference Include="..\Reactivities.Dtos\Reactivities.Dtos.csproj" />
+		<ProjectReference Include="..\Reactivities.Entity\Reactivities.Entity.csproj" />
+	</ItemGroup>
 
 </Project>

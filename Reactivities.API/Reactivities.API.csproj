@@ -7,13 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Reactivities.Dtos\Reactivities.Dtos.csproj" />
+    <ProjectReference Include="..\Reactivities.Repository\Reactivities.Repository.csproj" />
     <ProjectReference Include="..\Reactivities.Services.Interface\Reactivities.Services.Interface.csproj" />
+    <ProjectReference Include="..\Reactivities.Services\Reactivities.Services.csproj" />
     <ProjectReference Include="..\Reactivities.Utils\Reactivities.Utils.csproj" />
   </ItemGroup>
 
