@@ -12,7 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\Reactivities.Services.csproj" />
+    <ProjectReference Include="..\Reactivities.Dtos\Reactivities.Dtos.csproj" />
+    <ProjectReference Include="..\Reactivities.Services.Interface\Reactivities.Services.Interface.csproj" />
+    <ProjectReference Include="..\Reactivities.Utils\Reactivities.Utils.csproj" />
   </ItemGroup>
 
 </Project>

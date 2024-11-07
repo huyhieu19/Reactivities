@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Persistence\Reactivities.Database.csproj" />
+    <ProjectReference Include="..\Reactivities.Database\Reactivities.Database.csproj" />
+    <ProjectReference Include="..\Reactivities.Dtos\Reactivities.Dtos.csproj" />
+    <ProjectReference Include="..\Reactivities.Entity\Reactivities.Entity.csproj" />
   </ItemGroup>
 
 </Project>

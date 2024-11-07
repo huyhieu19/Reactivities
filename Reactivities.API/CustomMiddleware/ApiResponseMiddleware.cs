@@ -48,7 +48,7 @@ public class ApiResponseMiddleware
                 var apiResponse = new ResponseModel<object>
                 {
                     Success = false,
-                    ErrorMessage = "False",
+                    ErrorMessage = $"False + {exception.Message}",
                     StatusCode = context.Response.StatusCode,
                 };
 

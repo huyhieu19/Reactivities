@@ -7,7 +7,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Domain\Reactivities.Entity.csproj" />
+	  <ProjectReference Include="..\Reactivities.Repository.Interface\Reactivities.Repository.Interface.csproj" />
+	  <ProjectReference Include="..\Reactivities.Services.Interface\Reactivities.Services.Interface.csproj" />
 	</ItemGroup>
 
 </Project>
